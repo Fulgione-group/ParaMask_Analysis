@@ -102,3 +102,47 @@ rRNA_files <- lapply(1:8, function(chr_num) {
 
 ##############
 #Assign to coverage files
+#assign SVs
+for (list in 1:length(tables_ES04)) {
+  coverage_class_table <- tables_ES04[[list]]
+  list_in_process <- SV_list[[list]]
+  for (row_num in 1:length(list_in_process$query_start)) {
+    coverage_class_table$Coverage_classes[which(coverage_class_table$Window > list_in_process$query_start[row_num] & coverage_class_table$Window < list_in_process$query_end[row_num])] <- "verified SV (sniffles/cuteSV)"
+  }
+  tables_ES04[[list]] <- coverage_class_table
+}
+
+#rRNA
+for (list in 1:length(tables_es03)) {
+  coverage_class_table <- tables_es03[[list]]
+  rRNA_table <- rRNA_list[[list]]
+  for (row_num in 1:length(rRNA_table$V2)) {
+    coverage_class_table$Coverage_classes[which(coverage_class_table$Window > rRNA_table$V2[row_num]-500 & coverage_class_table$Window < rRNA_table$V3[row_num]+500)] <- rRNA_table$V4[row_num]
+  }
+  tables_es03[[list]] <- coverage_class_table
+}
+
+
+#Plastids
+for (list_num in 1:length(tables_ES04)) {
+  tables_all_classes <- tables_ES04[[list_num]]
+  plastid_table <- ES04_plastids_list[[list_num]]
+  for (window_size in 1:length(plastid_table$Window)) {
+    tables_all_classes$Coverage_classes[which(tables_all_classes$Window==plastid_table$Window[window_size])] <- plastid_table$Coverage_classes[window_size]
+  }
+  tables_ES04[[list_num]] <- tables_all_classes
+}
+
+
+#Update chromosome name
+coverage_data$Chr[coverage_data$Chr=="chr1_RagTag"] <- "Chr 1"
+coverage_data$Chr[coverage_data$Chr=="chr2_RagTag"] <- "Chr 2"
+coverage_data$Chr[coverage_data$Chr=="chr3_RagTag"] <- "Chr 3"
+coverage_data$Chr[coverage_data$Chr=="chr4_RagTag"] <- "Chr 4"
+coverage_data$Chr[coverage_data$Chr=="chr5_RagTag"] <- "Chr 5"
+coverage_data$Chr[coverage_data$Chr=="chr6_RagTag"] <- "Chr 6"
+coverage_data$Chr[coverage_data$Chr=="chr7_RagTag"] <- "Chr 7"
+coverage_data$Chr[coverage_data$Chr=="chr8_RagTag"] <- "Chr 8"
+
+#Save coverage data as use for visualization
+write.table(coverage_data_ES04,"~/Studium/Köln_Biological Science/Master Thesis/Bastiaan/Results/Results_final/ES04_coverage_data_visualize.txt")
