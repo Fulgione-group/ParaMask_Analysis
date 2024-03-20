@@ -1,5 +1,6 @@
+#!/bin/bash
 # Purging of haplotigs with purge_dups
-
+# Heterozygosity threshold: 0.1
 raw="path/to/data"
 ID="ID"
 assembly="assembly.fasta"
