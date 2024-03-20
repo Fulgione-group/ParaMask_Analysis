@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Heterozygostiy/Genome Size Estimation - Jellyfish
 ID="Accesion_ID"
 path_raw_LR_data="/path/to/raw_data.fq"
