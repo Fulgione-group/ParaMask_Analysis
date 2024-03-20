@@ -1,3 +1,5 @@
+#!/bin/bash
+
 #Hifiasm v0.19
 #source /opt/share/software/scs/appStore/modules/init/profile.sh
 #module load hifiasm/v0.19
