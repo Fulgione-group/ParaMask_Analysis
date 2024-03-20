@@ -1,3 +1,5 @@
+#!/bin/bash
+
 table_file="/netscratch/dep_coupland/grp_fulgione/male/assemblies/assemblies_for_script.txt"
 while IFS=$'\t' read -r col1 col2
 do
