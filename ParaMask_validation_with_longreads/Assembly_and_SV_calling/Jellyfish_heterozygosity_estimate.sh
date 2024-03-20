@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Heterozygostiy/Genome Size Estimation - Jellyfish
+# Heterozygostiy/Genome Size Estimation - using Jellyfish and GenomeScope http://qb.cshl.edu/genomescope/
 ID="Accesion_ID"
 path_raw_LR_data="/path/to/raw_data.fq"
 
