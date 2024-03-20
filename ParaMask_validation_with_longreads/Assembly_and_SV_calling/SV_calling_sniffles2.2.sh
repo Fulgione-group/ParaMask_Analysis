@@ -1,7 +1,7 @@
 #!/bin/bash
-# sniffles
+# SV calling using sniffles v2.2 (as conda env)
 
-conda activate sniffles_env #sniffles v2.2
+conda activate sniffles_env
 
 input_bam="/path/to/input/bam" 
 ID="accession_ID"
