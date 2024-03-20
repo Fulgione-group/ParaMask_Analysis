@@ -1,13 +1,13 @@
 #!/bin/bash
 # Purging of haplotigs with purge_dups
 # Heterozygosity threshold: 0.1
-raw="path/to/data"
-ID="ID"
-assembly="assembly.fasta"
+raw="path/to/raw_reads.fastq"
+ID="Accession_ID"
+assembly="/Path/to/assembly.fasta"
 tool="flye"
 
 #Map reads to assembly and calculate depth +
-minimap2 -xasm20 ${assembly} ${raw}  | gzip -c - > ${col1}_${tool}_pb.paf.gz
+minimap2 -xasm20 ${assembly} ${raw}  | gzip -c - > ${ID}_${tool}_pb.paf.gz
 pbcstat ${ID}_${tool}_pb.paf.gz
 calcuts PB.stat > cutoffs 2>calcults.log
 
