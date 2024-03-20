@@ -4,21 +4,22 @@
 #source /opt/share/software/scs/appStore/modules/init/profile.sh
 #module load hifiasm/v0.19
 
-table_file="/path/to/table_file/with/ID/and/raw_data_path.txt"
-while IFS=$'\t' read -r col1 col2
-do
+table_file="/path/to/table_file.txt/"   #including accession IDs (col 1) and paths to raw reads (col 2)
+  while IFS=$'\t' read -r col1 col2
+    do
 
-ID="${col1}"
-raw_data=${col2}"
+    ID="${col1}"
+    raw_data=${col2}"
+    working_dir="/path/to/working_dir/"
 
-#samples with heterozygosity > 0.1:
+#samples with heterozygosity > 0.1: (purging)
 
-cd /netscratch/dep_coupland/grp_fulgione/male/assemblies/${col1}/hifiasm_0.19
+cd ${working_dir}
 bsub -q multicore40 -R rusage[mem=60000] -M 70000 "hifiasm -o ${ID}_hifiasm_0.19.asm -t 40 ${raw_data}"
 
-#samples with heterozygosity < 0.1:
+#samples with heterozygosity < 0.1: (no purging -l0)
 
-cd /netscratch/dep_coupland/grp_fulgione/male/assemblies/${col1}/hifiasm_0.19
+cd ${working_dir}
 bsub -q multicore40 -R "rusage[mem=60000]" -M 70000 "hifiasm -o ${ID}_hifiasm_0.19.asm -t 40 -l0 ${raw_data}"
 
 #after assembly transform gfa to fasta
