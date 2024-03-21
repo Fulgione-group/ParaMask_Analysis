@@ -1,0 +1,5 @@
+#!/bin/bash
+
+#NLR Annotator:
+
+bsub -q multicore40 -R "rusage[mem=60000]" -M 70000 "java -jar ./NLR-Annotator-v2.1b.jar -i Reference_v5.1.fasta -x mot.txt -y store.txt -o NLR_annotation_reference_cluster.txt"
