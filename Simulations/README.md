@@ -5,4 +5,11 @@ We simulated duplications interdispersed among single-copy regions for different
 
 ## Sample sequence length
 ### Script: Sample_duplication_length_cmd.R
-This R script samples sequence lengths of duplications from an exponential distribution with a mean of 1000 bp for a total duplicated sequence length of p * 1 Mbp, where p is the proportion of duplications, and samples single-copy sequence lengths from a geometric distribution with mean = (1 Mbp * (1-p))/(N<sub>duplications</sub> + 1), L<sub>total</sub> of 1 Mbp. 
+This R script samples sequence lengths of duplications from an exponential distribution with a mean of 1000 bp for a total duplicated sequence length of p * 1 Mbp, where p is the proportion of duplications, and samples single-copy sequence lengths from a geometric distribution with mean = (1 Mbp * (1-p))/(N<sub>duplications</sub> + 1). The script outputs a text table with single-copy and multicopy regions respectively.
+
+## Simulation using SeDuS
+
+Steps for simulations with random mating and inbreeding are summarized in the the Pipeline_sim.sh and Pipeline_sim_withSelfing.sh scripts respectively.
+
+Parameters and 
+
