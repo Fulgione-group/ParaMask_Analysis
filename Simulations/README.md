@@ -14,7 +14,7 @@ Steps for simulations with random mating and inbreeding are summarized in the th
 ### SeDus_simSC_var.sh and SeDus_simSV_var.sh
 These scripts dynamically run SeDuS software given a sequence length as input
 
-´´´bash
+```bash
 #!/bin/bash
 acr=$(awk -v l=$1 'BEGIN{print (100*l/5000)}')
 
@@ -27,4 +27,4 @@ acr=$(awk -v l=$1 'BEGIN{print (100*l/5000)}')
  -u 0.001\
  -r ${acr}\
  -c 0.05
-´´´
+```
