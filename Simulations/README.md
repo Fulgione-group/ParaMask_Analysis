@@ -12,7 +12,7 @@ This R script samples sequence lengths of duplications from an exponential distr
 Steps for simulations with random mating and inbreeding are summarized in the the Pipeline_sim.sh and Pipeline_sim_withSelfing.sh scripts respectively.
 
 ### SeDus_simSC_var.sh and SeDus_simSV_var.sh
-These scripts dynamically run SeDuS with a sequence length as input.
+These scripts dynamically run SeDuS with a sequence length as input. SeDus then performs forward simulations.
 
 ```bash
 #!/bin/bash
@@ -28,4 +28,7 @@ acr=$(awk -v l=$1 'BEGIN{print (100*l/5000)}')
  -r ${acr}\
  -c 0.05
 ```
-Where -b is the sequence length and -r is the recombination rate adjusted for the sequence length.
+Where "-b" is the sequence length and "-r" is the recombination rate adjusted for the sequence length, "-u" is the fixed population mutation rate parameter $\theta$, "-n" the simulated population size, and "-c" is the population-scaled interlocus gene conversion rate.
+
+For simulations with Inbreeding (F<sub>IS</sub>=0.9) we adjusted population mutation rate parameter theta and recombination rate according to [Nordborg 2000](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1460950/)
+
