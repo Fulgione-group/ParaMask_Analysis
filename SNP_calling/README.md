@@ -31,3 +31,6 @@ Creates a GATK genomic Database
 <br>
 ## genotypeGVCF_Alpina_Genomes.sh
 Performs joint genotyping for all samples in gDB created in the previous step
+<br>
+## run_FilterVCF_Alpina_Genomes.sh
+Filter with custom scripts per genotype and per site: Genotype quality >=30, depth >=5, min-genome-wide-cov >= 10x, biallic SNps only
