@@ -3,7 +3,6 @@ We used [GATK](https://www.nature.com/articles/ng.806) [v4.2.0.0](https://gatk.b
 
 <br>
 <br>
-<br>
 
 # Pipeline:
 ## fastqtosam_all.sh
