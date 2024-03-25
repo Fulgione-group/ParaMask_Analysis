@@ -5,11 +5,26 @@ We simulated duplications interdispersed among single-copy regions for different
 
 ## Sample sequence length
 ### Script: Sample_duplication_length_cmd.R
-This R script samples sequence lengths of duplications from an exponential distribution with a mean of 1000 bp for a total duplicated sequence length of p * 1 Mbp, where p is the proportion of duplications, and samples single-copy sequence lengths from a geometric distribution with mean = (1 Mbp * (1-p))/(N<sub>duplications</sub> + 1). The script outputs a text table with single-copy and multicopy regions respectively.
+This R script samples sequence lengths of duplications from an exponential distribution with a mean of 1000 bp for a total duplicated sequence length of p * 1 Mbp, where p is the proportion of duplications, and samples single-copy sequence lengths from a geometric distribution with mean = (1 Mbp * (1-p))/(N<sub>duplications</sub> + 1), where N<sub>duplications</sub> is the number of duplications drawn until the total duplicated sequence length is reached. The script outputs a text table with single-copy and multicopy regions respectively.
 
 ## Simulation using SeDuS
 
 Steps for simulations with random mating and inbreeding are summarized in the the Pipeline_sim.sh and Pipeline_sim_withSelfing.sh scripts respectively.
 
-Parameters and 
+### SeDus_simSC_var.sh and SeDus_simSV_var.sh
+These scripts dynamically run SeDuS software given a sequence length as input
 
+´´´{bash}
+#!/bin/bash
+acr=$(awk -v l=$1 'BEGIN{print (100*l/5000)}')
+
+/netscratch/dep_coupland/grp_fulgione/bastiaan/software/SeDuS_1.10_exe Sim_SC_b$2_l$1_c0.05_rep${3}\
+ -s 1\
+ -z 100\
+ -k 1000\
+ -n 10000\
+ -b $1\
+ -u 0.001\
+ -r ${acr}\
+ -c 0.05
+´´´
