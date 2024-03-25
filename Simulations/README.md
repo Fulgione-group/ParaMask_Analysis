@@ -32,3 +32,4 @@ Where "-b" is the sequence length and "-r" is the recombination rate adjusted fo
 
 For simulations with Inbreeding (F<sub>IS</sub>=0.9) we adjusted population mutation rate parameter theta and recombination rate according to [Nordborg 2000](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1460950/)
 
+## genotype
