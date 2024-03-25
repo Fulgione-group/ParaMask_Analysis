@@ -22,6 +22,12 @@ Script to merge mapped bam file and raw unmapped sam files and sort the merged b
 <br>
 ## markadapters
 Mark PCR duplicates (reads from the same DNA sequencing freqment)
-
+<br>
 ## haplocallergvcf_all2.sh
 Per sample genotyping using GATK's haplotype caller with "--output-mode EMIT_ALL_ACTIVE_SITES" to emit an all sites VCF (including invariant sites). Outputs in raw genotype calls in GVCFs
+<br>
+## genotypeGVCF_Alpina_Genomes.sh
+Creates a GATK genomic Database
+<br>
+## genotypeGVCF_Alpina_Genomes.sh
+Performs joint genotyping for all samples in gDB created in the previous step
