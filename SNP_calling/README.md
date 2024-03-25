@@ -20,3 +20,7 @@ Script to map samples to the *A. alpina* pajares reference.
 Script to merge mapped bam file and raw unmapped sam files and sort the merged bam file
 <br>
 ## markadapters
+Mark PCR duplicates (reads from the same DNA sequencing freqment)
+
+## haplocallergvcf_all2.sh
+Per sample genotyping using GATK's haplotype caller with "--output-mode EMIT_ALL_ACTIVE_SITES" to emit an all sites VCF (including invariant sites). Outputs in raw genotype calls in GVCFs
