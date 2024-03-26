@@ -6,7 +6,7 @@ samples=$2
 maxjob=$(expr $3 - 1 )
 cd $dir
 
-gatk2='/netscratch/dep_coupland/grp_coupland/bioinformatics/bastiaan/software/gatk-4.2.0.0/gatk'
+gatk2='PATH_TO_GATK/gatk-4.2.0.0/gatk'
 
 sortmabam () {
 	local j=$1
