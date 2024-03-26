@@ -6,16 +6,16 @@ We simulated duplications interspersed among single-copy regions for different p
 <br />
 ## Sample sequence length
 ### Script: Sample_duplication_length_cmd.R
-This R script samples sequence lengths of duplications from an exponential distribution with a mean of 1000 bp for a total duplicated sequence length of p * 1 Mbp, where p is the proportion of duplications, and samples single-copy sequence lengths from a geometric distribution with mean = (1 Mbp * (1-p))/(N<sub>duplications</sub> + 1), where N<sub>duplications</sub> is the number of duplications drawn until the total duplicated sequence length is reached. The script outputs a text table with single-copy and multicopy regions respectively.
+This R script samples sequence lengths of duplications from an exponential distribution with a mean of 1000 bp for a total duplicated sequence length of p * 1 Mbp, where p is the proportion of duplications, and samples single-copy sequence lengths from a geometric distribution with mean = (1 Mbp * (1-p))/(N<sub>duplications</sub> + 1), where N<sub>duplications</sub> is the number of duplications drawn until the total duplicated sequence length is reached. The script outputs a text table with single-copy and multicopy regions (SVtab.txt) and lengths of single-copy regions (SC_length.txt) and lengths of duplications (SV_length.txt).
 <br />
 <br />
 <br />
 ## Simulation using SeDuS
 
-The full steps for simulations with random mating and inbreeding are summarized in the the Pipeline_sim_HW.sh and Pipeline_sim_Selfing.sh scripts respectively. The most important steps are explained here:
+All steps in simulations with random mating and inbreeding are summarized in the the Pipeline_sim_HW.sh and Pipeline_sim_Selfing.sh scripts respectively. The pipelines use ids for replicates, such you can run a full simulation for a single replicate. The most important steps of the Pipeline are explained here:
 <br />
 ### SeDus_simSC_var.sh and SeDus_simSV_var.sh
-These scripts dynamically run SeDuS with a sequence length as input. SeDus then performs forward simulations.
+These scripts dynamically run SeDuS with a sequence length as input (SV_length.txt and SC_length.txt). SeDus then performs forward simulations. The SeDuS binaries need to be placed in the same folder, where you want to generate the data. In the Pipeline scripts later referred to "PATH_TO_SEDUS_OUTPUT_DIR"
 
 ```bash
 #!/bin/bash
