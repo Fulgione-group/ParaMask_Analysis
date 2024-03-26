@@ -20,7 +20,7 @@ bash concat_SC_SV_mat.sh REP_NUMBER PATH_TO_OUTPUT_DIR
 #annotate SVtab
 bash Annotate_SVtab.sh  SVtab.txt
 #update postion with
-bash update_pos_sim_mat.sh SVtab_annotated.txt Simulations_SV_SC_rep1_mat.txt  PATH_TO_OUTPUT_DIR
+bash update_pos_sim_mat.sh SVtab_annotated.txt Simulations_SV_SC_rep{REP_NUMBER}_mat.txt  PATH_TO_OUTPUT_DIR
 #simulate allelic ratios and coverage
 bash simulate_coverage_allele_depth.sh Simulations_SV_SC_rep{REP_NUMBER}_mat_cpos.txt
 
