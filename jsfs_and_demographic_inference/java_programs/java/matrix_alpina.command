@@ -4,7 +4,7 @@
 ###
 #		VCF combined to SNP matrix
 ###
-vcf=/srv/netscratch/dep_coupland/grp_fulgione/andrea/alpina_2023/GATK4.2_1000Genomes_chrall.filteredQ30LD5UD100K.final.b.vcf.gz
+vcf=GATK4.2_1000Genomes_chrall.filteredQ30LD5UD100K.final.b.vcf.gz
 # bgzip -cd ${vcf}.b.gz > ${vcf}
 matrix=${vcf}_e3e4_paramask_superMatrix.txt
 vcfNew=${vcf}.b.gz_e3e4_paramask.b.vcf
