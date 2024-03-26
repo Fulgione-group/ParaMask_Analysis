@@ -1,3 +1,5 @@
+# Overview
+
 This directory contains all scripts necessary for detecting repeat elements in an assembly and subsequently transferring those repeats onto another assembly to align coordinates between the two assemblies.
 
 The script _RepeatMasker.sh_ is employed to annotate repeats based on an input assembly.
