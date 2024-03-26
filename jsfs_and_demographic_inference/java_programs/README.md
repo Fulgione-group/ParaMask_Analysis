@@ -18,10 +18,4 @@ Also outputs jsfs in dadi format.
 
 in ./java/data you will find supporting files:
 
-### genes_only_final.bed
 
-Is a mask for genes and neighboring 2kbp to create intergenic jafs
-
-### ES0304_run_finalEMresults.allChr.finalClass.multicopy.bed	
-
-Is the mask of multicopy regions created with paramask on Spanish Arbis alpina
