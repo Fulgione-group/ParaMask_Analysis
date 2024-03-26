@@ -20,10 +20,10 @@ The directory Coverage Analysis long_read assemblies contains all scripts used t
 This directory hosts a script designed for mapping scaffolds from generated assemblies to a reference. The script facilitates aligning coordinates between the assembly and the reference by utilizing the resultant mapping file. 
 
 ## Agreement_analysis_ParaMask_SV
-The directory Agreement analysis contains all scripts to validate the overlap between ParaMask and SV calls seperated for single-copy and multicopy regions. Each subdirectory contains a R-script to define a function how to calculate the agreement in the particular region. The single-copy directory additionally contains R-scripts to filter the ParaMask calls for ES03 and ES04 seed calls only. 
+The directory Agreement analysis contains all scripts to validate the overlap between ParaMask and SV calls seperated for single-copy and multicopy regions. Each subdirectory contains a R-script to define a function how to calculate the agreement in the particular region. The single-copy directory additionally contains R-scripts to filter the ParaMask calls for ES03-014 and ES04-014 seed calls only. 
 
 ## RepeatMasker
-To detect repeat elements in the generated assemblies, first the script RepeatMasker.sh was used. These repeats were afterwards lifted over to the reference using the script Bet_to_gff.R and Liftover_repeats.sh, which are all included in the directory RepeatMasker. 
+All scripts necessary to detect repeat elements in the generated assemblies and lift these over to another assembly, to align coordinate systems are included in the directory RepeatMasker. 
 
 ## Repeat_SV_overlap_analysis
 This directory contains a script to compare the overlap of ParaMask calls with repeats generated with RepeatMasker and all structural variant types. 
