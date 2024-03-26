@@ -6,7 +6,7 @@ samples=$2
 maxjob=$(expr $(expr $3 - 1 ) / 8 )
 cd $dir
 
-gatk2='/netscratch/dep_coupland/grp_coupland/bioinformatics/bastiaan/software/gatk-4.2.0.0/gatk'
+gatk2='PATH_TO_GATK/gatk-4.2.0.0/gatk'
 
 
 bwamap () {
@@ -15,7 +15,7 @@ bwamap () {
         uj=$(echo ${j} | rev | cut -d '.' -f2- | rev)
         sample=$(echo ${uj} | rev | cut -d '_' -f2- | rev)
         bwa index ${uj} &&
-        bwa mem -M -t 8 -p /netscratch/dep_coupland/grp_fulgione/bastiaan/data/reference/Alpina_V5.1/Arabis_alpina.MPIPZ.version_5.1.chr.all.fasta \
+        bwa mem -M -t 8 -p PATH_TO_REFERENCE/Alpina_V5.1/Arabis_alpina.MPIPZ.version_5.1.chr.all.fasta \
         ${uj} > ${sample}_bwamem.sam 2> ${sample}_bwamem_stderr.txt
 	rm ${uj}
 	rm ${uj}.ann
