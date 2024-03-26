@@ -2,7 +2,7 @@
 
 This directory contains all scripts to generate whole genome assemblies and SV call sets based on PacBio Hifi long-read data.
 
-The script _Jellyfish_heterozygosity_estimate.sh_ generates the necessary files used as www.GenomeScope.org [Ranallo-Benavidez et. al, 2020][https://github.com/schatzlab/genomescope]input to estimate genome size and heterozygosity.
+The script _Jellyfish_heterozygosity_estimate.sh_ generates the necessary files used as www.GenomeScope.org [Ranallo-Benavidez et. al, 2020][https://github.com/schatzlab/genomescope] input to estimate genome size and heterozygosity.
 _Hifiasm_assembly.sh_ and _Flye_assembly.sh_ create two independent assemblies. While potential haplotigs of the assembly generated with _Hifiasm.sh_ are already purged, the script_PurgeDups_purging_haplotigs.sh_ is used to purge the flye assembly.
 To increase contiguity of the contigs, both assemblies are merged with _Quickmerge_merge_assemblies.sh_.
 After merging, contigs are anchored against the reference chromosomes into scaffolds, using the script _RagTag_scaffolding.sh_. 
