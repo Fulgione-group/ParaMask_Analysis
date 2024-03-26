@@ -1,4 +1,9 @@
-  
+
+##SeDuS simulations
+
+bash run_SeDuS_SV_rep_withSelfing.sh
+bash run_SeDuS_SC_rep_withSelfing.sh
+
 ###transform all files 
 #SC
 bash transform_mutation_SC.sh PATH_TO_SEDUS_OUTPUT_DIR
