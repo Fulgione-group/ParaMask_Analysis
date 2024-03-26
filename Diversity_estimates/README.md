@@ -1,6 +1,6 @@
 # Overview
 
-For each site the number of genotypes are randomly projected down to 90% in order to account for missingsites. Then we calculated diversity estimators $\theta$<sub>W</sub> and $\theta$<sub>$\pi$</sub>, and Tajimas' D. $\theta$<sub>W</sub> and $\theta$<sub>$\pi$</sub> are scaled by the density of sites.
+To account for missingness we randomly projected the number of genotypes at each site down to 90%. Then we calculated diversity estimators $\theta$<sub>W</sub> and $\theta$<sub>$\pi$</sub>, and Tajimas' D. $\theta$<sub>W</sub> and $\theta$<sub>$\pi$</sub> were scaled by the density of sites.
 
 # Scripts
 
