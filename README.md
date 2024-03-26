@@ -1,5 +1,5 @@
 # Overview
-This repository encompasses all code that was used to test and analyze [ParaMask](https://github.com/Fulgione-group/ParaMask.git) results. For questions please contact us via [email](btjeng@mpipz.mpg.de).
+This repository encompasses all code that was used to test and analyze [ParaMask](https://github.com/Fulgione-group/ParaMask.git) results. Details on each section can be found in seperate README documentations. For questions please contact us via [email](btjeng@mpipz.mpg.de).
 <br>
 
 ## Simulations
