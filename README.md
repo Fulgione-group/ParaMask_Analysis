@@ -3,7 +3,7 @@ This repository encompasses all code that was used to test and analyze [ParaMask
 
 ## Simulations
 
-Scripts to simulate a mosaic of single-copy and duplicated regions using forward genetic simulator with segmental duplications SeDuS 
+Scripts to simulate a mosaic of single-copy and duplicated regions using forward genetic simulator with segmental duplications SeDuS ([Hartasánchez et al., 2015](https://academic.oup.com/bioinformatics/article/32/1/148/1742451)).
 
 ## SNP calling
 GATK ([DePristo et al., 2011](https://www.nature.com/articles/ng.806)) pipeline used to call SNPs for Spanish *A. alpina* populations that we tested ParaMask on.
