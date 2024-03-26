@@ -1,2 +1,1 @@
-The script Function_Agreement_multicopy_regions.R defines a function how to calculate the agreement between multicopy regions of ParaMask and the SV call duplications.
-Utilizing the script Run_agreement_analysis_multicopy_regions.R applies the defined function to given data. 
+The script _Function_Agreement_multicopy_regions.R_ establishes a function for computing the agreement between multicopy regions identified by ParaMask and structural variation (SV) duplication calls. Subsequently, the script _Run_agreement_analysis_multicopy_regions.R_ is employed to apply this function to provided data.
