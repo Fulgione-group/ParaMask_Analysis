@@ -12,6 +12,6 @@ Script to plot joint allele frequency spectra (jafs)
 
 ## dadi			
 
-Scripts to infer the demographic history of Spanish A. alpina populations with dadi (Gutenkunst et al. 2009)
+Scripts to infer the demographic history of Spanish A. alpina populations with [dadi](https://dadi.readthedocs.io/en/latest/) ([Gutenkunst et al. 2009](https://journals.plos.org/plosgenetics/article?id=10.1371/journal.pgen.1000695))
 
 
