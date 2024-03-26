@@ -8,9 +8,9 @@ bash transform_mutation_SV.sh PATH_TO_OUT_DIR
 ####pipeline for single run
 ##convert to vcf
 #SC
-bash run_genotypetype_to_mat_SC_withSelfing.sh 1 PATH_TO_OUT_DIR
+bash run_genotypetype_to_mat_SC_withSelfing.sh REP_NUMBER PATH_TO_OUT_DIR
 #SV
-bash run_genotypetype_to_mat_SV_new_withSelfing.sh 1 PATH_TO_OUT_DIR
+bash run_genotypetype_to_mat_SV_new_withSelfing.sh REP_NUMBER PATH_TO_OUT_DIR
 #concat SV duplicates
 bash concat_SV_mat_new.sh REP_NUMBER PATH_TO_OUT_DIR
 #concat SV with SC
