@@ -12,7 +12,7 @@ This R script samples sequence lengths of duplications from an exponential distr
 <br />
 ## Simulation using SeDuS
 
-The full steps for simulations with random mating and inbreeding are summarized in the the Pipeline_sim.sh and Pipeline_sim_withSelfing.sh scripts respectively. The most important steps are explained here:
+The full steps for simulations with random mating and inbreeding are summarized in the the Pipeline_sim_HW.sh and Pipeline_sim_Selfing.sh scripts respectively. The most important steps are explained here:
 <br />
 ### SeDus_simSC_var.sh and SeDus_simSV_var.sh
 These scripts dynamically run SeDuS with a sequence length as input. SeDus then performs forward simulations.
