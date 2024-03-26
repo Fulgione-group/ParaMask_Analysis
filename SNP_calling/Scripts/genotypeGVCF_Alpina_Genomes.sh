@@ -14,4 +14,11 @@ $gatk2 --java-options "-DGATK_STACKTRACE_ON_USER_EXCEPTION=true -XX:ConcGCThread
     -O GATK4.2_Alpina_Genomes.vcf \
     -all-sites\
     --tmp-dir /scratch\
-    -L chr1
+    -L chr1\
+    -L chr2\
+    -L chr3\
+    -L chr4\
+    -L chr5\
+    -L chr6\
+    -L chr7\
+    -L chr8
