@@ -4,7 +4,7 @@ This directory contains all scripts to generate whole genome assemblies and SV c
 
 The script _Jellyfish_heterozygosity_estimate.sh_ [Marcais et al., 2011][https://github.com/gmarcais/Jellyfish/tree/master] generates the necessary files used as www.GenomeScope.org [Ranallo-Benavidez et al., 2020][https://github.com/schatzlab/genomescope] input to estimate genome size and heterozygosity.
 _Hifiasm_assembly.sh_ [Cheng et al., 2021][https://doi.org/10.1038/s41592-020-01056-5] and _Flye_assembly.sh_ [Kolmogorov et al., 2019][https://doi.org/10.1038/s41587-019-0072-8] create two independent assemblies. While potential haplotigs of the assembly generated with _Hifiasm.sh_ are already purged, the script_PurgeDups_purging_haplotigs.sh_ [Guan et al., 2020][https://github.com/dfguan/purge_dups] is used to purge the flye assembly.
-To increase contiguity of the contigs, both assemblies are merged with _Quickmerge_merge_assemblies.sh_ [][https://github.com/mahulchak/quickmerge].
+To increase contiguity of the contigs, both assemblies are merged with _Quickmerge_merge_assemblies.sh_ [https://github.com/mahulchak/quickmerge].
 After merging, contigs are anchored against the reference chromosomes into scaffolds, using the script _RagTag_scaffolding.sh_. 
 Gapclosing of the final assembly is conducted with the script _LR_Gapcloser_gapclosing.sh_ [Xu et al., 2019][https://github.com/CAFS-bioinformatics/LR_Gapcloser/tree/master].
 
