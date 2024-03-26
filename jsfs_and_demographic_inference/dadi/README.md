@@ -1,4 +1,5 @@
-# Demographic inference with dadi (Gutenkunst et al, 2009)
+# Demographic inference with [dadi](https://dadi.readthedocs.io/en/latest/) ([Gutenkunst et al. 2009](https://journals.plos.org/plosgenetics/article?id=10.1371/journal.pgen.1000695))
+
 
 ## demographic_models.py: 
 The demographic models used for inference
