@@ -1,5 +1,6 @@
-###run sim before pipeline TBE
-
+###run 
+bash run_SeDuS_SV_rep.sh
+bash run_SeDuS_SC_rep.sh
 
 ###transform all files 
 #SC
