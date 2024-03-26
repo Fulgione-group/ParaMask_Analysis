@@ -1,3 +1,5 @@
+# Overview
+
 This directory contains all scripts to generate whole genome assemblies and SV call sets based on PacBio Hifi long-read data.
 
 The script _Jellyfish_heterozygosity_estimate.sh_ generates the necessary files used as www.GenomeScope.org input to estimate genome size and heterozygosity.
