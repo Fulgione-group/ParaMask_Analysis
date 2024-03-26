@@ -12,7 +12,7 @@ This R script samples sequence lengths of duplications from an exponential distr
 <br />
 ## Simulation using SeDuS
 
-All steps in simulations with random mating and inbreeding are summarized in the the Pipeline_sim_HW.sh and Pipeline_sim_Selfing.sh scripts respectively. The pipelines use ids for replicates, such you can run a full simulation for a single replicate. The most important steps of the Pipeline are explained here:
+All steps in simulations with random mating and inbreeding are summarized in the the Pipeline_sim_HW.sh and Pipeline_sim_Selfing.sh scripts respectively. The pipelines use ids for replicates, such that a full simulation is performed for a single replicate. The most important steps of the Pipeline are explained here:
 <br />
 ### SeDus_simSC_var.sh and SeDus_simSV_var.sh
 These scripts dynamically run SeDuS with a sequence length as input (SV_length.txt and SC_length.txt). SeDus then performs forward simulations. The SeDuS binaries need to be placed in the same folder, where you want to generate the data. In the Pipeline scripts later referred to "PATH_TO_SEDUS_OUTPUT_DIR"
@@ -47,5 +47,5 @@ These scripts collapse both copies of the duplications and concatinate the singl
 <br />
 ## Simulation of coverage and read ratiosS
 ### Simulate_coverage_allele_depth
-This R script simulates coverage for each site and genotype by sampling from a negative binomial with overdispersion parameter $\theta$<sub>NB</sub> = 8, and mean 10 or 20 for single-copy regions and duplications respectively. We simulate the number of reference alleles for heterozygote genotypes by sampling from a binomial distribution with a binomial population size equal to the simulated coverage. For heterozygote genotypes at single-copy regions and for homozygote differences between duplicated copies, the binomial probability to observe the derived allele was 0.5. For sites that are heterozygote on one duplicated copy and respectively homozygote ancestral or derived on the other, the probability was 0.25 or 0.75. We set SNPs with read ratio lower than 0.2 or higher than 0.8 as homozygotes. Genotypes with coverage less than 3 were set to missing values. 
+This R script simulates coverage for each site and genotype by sampling from a negative binomial with overdispersion parameter $\theta$<sub>NB</sub> = 8, and mean 10 or 20 for single-copy regions and duplications respectively. We simulate the number of reference alleles for heterozygote genotypes by sampling from a binomial distribution with a binomial population size equal to the simulated coverage. For heterozygote genotypes at single-copy regions and for homozygote differences between duplicated copies, the binomial probability to observe the derived allele is 0.5. For sites that are heterozygote on one duplicated copy and respectively homozygote ancestral or derived on the other, the probability is 0.25 or 0.75. We set SNPs with read ratio lower than 0.2 or higher than 0.8 as homozygotes. Genotypes with coverage less than 3 are set to missing values. 
 
