@@ -1,4 +1,4 @@
-# ParaMask_validation_with_long_reads
+# Overview
 
 To validate ParaMask calls using long reads, our approach involved two key steps:
 
