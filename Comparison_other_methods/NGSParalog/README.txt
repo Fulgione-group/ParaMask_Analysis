@@ -1,0 +1,2 @@
+The directory contains scripts to run NGSparalog calcLR (Calculate_LR.sh) and to further process ngsParalog output (Calculate_significant_sites.R) to assign p-Values to resulting LRs per SNP site.
+Additionally, scripts to assess the Overlap between ParaMask and ngsParalog (Overlap_ParaMask_and_ngsparalog.R) as well as the Overlap between ngsParalog and SVs called from long-reads (Agreement_with_long_reads.R) are provided. 
