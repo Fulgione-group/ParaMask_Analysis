@@ -4,7 +4,7 @@ snp_position_file="/PATH/TO/SNP_to_TEST.txt"
 ngs_in_file="/PATH/TO/NGS_FILE.pileup"
 
 # Create pileup file 
-samtools mpileup -b ${bam_list} -l ${snp_position_file} -q 0 -Q 0--ff UNMAP,DUP  > ${ngs_in_file}
+samtools mpileup -b ${bam_list} -l ${snp_position_file} --ff UNMAP,DUP  > ${ngs_in_file}
 
 # Split pileup file per chromosome
 chromosomes=$(awk '{print $1}' "$ngs_in_file" | sort | uniq)
