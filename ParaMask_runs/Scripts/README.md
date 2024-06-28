@@ -7,4 +7,6 @@ for simulations we used default settings with maximum 10% missingness per site f
 For the *A. alpina* population genomic data we used default setting for all parameters with maximum missingness of 10% per site in all Paramask steps, except that we set the number of iterations in the distance EM algorithm to 100.  
 For WoodWhiteButterfly population genomic data we used default setting for all parameters with maximum missingness of 10% per site in all Paramask steps
 For PinkSalmon population genomic data we used default setting for all parameters with maximum missingness of 10% per site in all Paramask steps. The script for painting chromosomes according to the copynumber status is included.
-
+## Evaluation
+Scripts to evaluate the Overlap between simulated multicopy regions and multicopy regions identified by ParaMask
+Scripts to analyze the ParaMask results for genomic data of the 3 species
