@@ -46,6 +46,12 @@ These scripts collapse both copies of the duplications and concatinate the singl
 <br />
 <br />
 ## Simulation of coverage and read ratiosS
-### Simulate_coverage_allele_depth
+### Simulate_coverage_allele_depth.R
 This R script simulates coverage for each site and genotype by sampling from a negative binomial with overdispersion parameter $\theta$<sub>NB</sub> = 8, and mean 10 or 20 for single-copy regions and duplications respectively. We simulate the number of reference alleles for heterozygote genotypes by sampling from a binomial distribution with a binomial population size equal to the simulated coverage. For heterozygote genotypes at single-copy regions and for homozygote differences between duplicated copies, the binomial probability to observe the derived allele is 0.5. For sites that are heterozygote on one duplicated copy and respectively homozygote ancestral or derived on the other, the probability is 0.25 or 0.75. We set SNPs with read ratio lower than 0.2 or higher than 0.8 as homozygotes. Genotypes with coverage less than 3 are set to missing values. 
 
+### Simulate_coverage_allele_depth_cmd_varCov.R
+Script takes variable coverage into account and only sets individual genotypes to Na if coverage per site and per genotype is lower than 2.
+
+## sub sampling genotypes to get
+### subsample_var.sh
+This script takes a sample number and vcf as input and outputs a vcf with reduced sample size
