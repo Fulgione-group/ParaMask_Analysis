@@ -11,4 +11,5 @@ For Chinook Salmon we used a maximum missingness of 30% comparable to inference 
 ## Evaluation
 Scripts to evaluate the Overlap between simulated multicopy regions and multicopy regions identified by ParaMask
 Scripts to analyze the ParaMask results for genomic data of Arabis alpina, Pink Salmon, and Wood White Butterfly
-Script to evaluate the recall of known multicopy SNPs in Chinook Salmon
+Script to evaluate the recall of known multicopy SNPs in Chinook Salmon "ParaMask_evaluate_chinook.R"
+Script to analyze the number of heterozygotes at seeds "Seed_hetcount_dist.R"
