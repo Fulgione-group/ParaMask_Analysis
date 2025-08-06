@@ -55,3 +55,13 @@ Script takes variable coverage into account and only sets individual genotypes t
 ## sub sampling genotypes to get
 ### subsample_var.sh
 This script takes a sample number and vcf as input and outputs a vcf with reduced sample size
+
+
+
+##To convert SeDuS simulations to BAM files for ngsParalog
+
+###create_fasta.R
+generate reference, derived sequence, and sequences for each haplotype
+
+###Compare_NgsParalog_to_simulated_SNPs.sh
+simulate reads with ART, mapping reads, creating SAMTOOLS pileup files, and run ngsParalog on simulations
