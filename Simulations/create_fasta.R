@@ -8,7 +8,7 @@ wrap_sequence <- function(seq_chars, width = 60) {
   return(substring(seq_string, starts, ends))
 }
 # Set output directory
-output_dir <- "/home/btjeng/Data/Paramask/Sim_final/makefasta/fasta_output"
+output_dir <- "$PATH_TO_OUT_DIR/fasta_output"
 
 bases<-c("A", "T","C", "G")
 probs <- c(0.3,0.3, 0.2,0.2)
@@ -44,26 +44,27 @@ sum(l_numbers_SC)
 
 #create sequences, copy the sequence according to position and length of each chunk and also look for mutations and copy from the derived sequence
 
-#rep k
-k<-1
+
+#for a reduced sampling set 
+subsamplesize <-15
 
 for(k in 1:3){
 
   #read all duplication files 0 and 2
-  files_SV_0<-list.files(path = "$PATH_TO_SeDuS_OUTPUT/makefasta/", pattern = paste0(".*_0_.*SV.*rep", k,".*transformed\\.txt"), full.names = T)
+  files_SV_0<-list.files(path = "$PATH_TO_SEDUS_OUTPUT/", pattern = paste0(".*_0_.*SV.*rep", k,".*transformed\\.txt"), full.names = T)
   # Extract the b<number> part and convert to numeric
   b_numbers <- as.numeric(sub(".*_b(\\d+)_.*", "\\1", files_SV_0))
   files_SV_0_sorted <- files_SV_0[order(b_numbers)]
   l_numbers_SV <- as.numeric(sub(".*_l(\\d+)_.*", "\\1", files_SV_0_sorted))
   sum(l_numbers_SV)
 
-  files_SV_2<-list.files(path = "$PATH_TO_SeDuS_OUTPUT/makefasta/", pattern = paste0(".*_2_.*SV.*rep", k,".*transformed\\.txt"), full.names = T)
+  files_SV_2<-list.files(path = "$PATH_TO_SEDUS_OUTPUT/", pattern = paste0(".*_2_.*SV.*rep", k,".*transformed\\.txt"), full.names = T)
   # Extract the b<number> part and convert to numeric
   b_numbers <- as.numeric(sub(".*_b(\\d+)_.*", "\\1", files_SV_2))
   files_SV_2_sorted <- files_SV_2[order(b_numbers)]
 
   #read all single-copy files
-  files_SC<-list.files(path = "$PATH_TO_SeDuS_OUTPUT/makefasta/", pattern = paste0("*SC.*rep", k,".*transformed\\.txt"), full.names = T)
+  files_SC<-list.files(path = "$PATH_TO_SEDUS_OUTPUT/", pattern = paste0("*SC.*rep", k,".*transformed\\.txt"), full.names = T)
   # Extract the b<number> part and convert to numeric
   b_numbers <- as.numeric(sub(".*_b(\\d+)_.*", "\\1", files_SC))
   files_SC_sorted <- files_SC[order(b_numbers)]
@@ -76,6 +77,9 @@ for(k in 1:3){
   i<-1
   SC <- read.table(file = files_SC_sorted[i], header = F, sep = "")
   n_haps<- ncol(SC)
+  subsample<- sample(x = ((n_haps-1)/2), replace = F, size = subsamplesize)
+  subsample <- subsample*2
+  subsample <- sort(c(subsample, subsample-1))+1
   for(j in 2:n_haps){
     fastas[[(j-1)]]  <- c(paste0("> Rep",as.character(k) ,"_Sample", ceiling((j-1)/2),"_Hap", (2-((j-1)%%2))))
   }
@@ -86,8 +90,8 @@ for(k in 1:3){
   for(i in 1:length(files_SV_0)){
     SC <- read.table(file = files_SC_sorted[i], header = F, sep = "")
     if(ncol(SC)>1 & nrow(SC)>1){
-      positions_snps <- rbind(positions_snps, cbind(SC$V1+pos_counter,"single-copy"))
-      positions_snps_wd <- rbind(positions_snps_wd, cbind(SC$V1+pos_counter_wd,"single-copy"))
+      positions_snps <- rbind(positions_snps, cbind(SC$V1+pos_counter, rowSums(SC[, 2:n_haps]), rowSums(SC[, subsample]), "single-copy"))
+      positions_snps_wd <- rbind(positions_snps_wd, cbind(SC$V1+pos_counter_wd, rowSums(SC[, 2:n_haps]), rowSums(SC[, subsample]),"single-copy"))
     }
     l_SC <- l_numbers_SC[i]
     if(l_SC>0){
@@ -106,8 +110,8 @@ for(k in 1:3){
     l_SV <- l_numbers_SV[i]
     if(l_SV>0){
       if(ncol(SV_0)>1 & nrow(SV_0)>1){
-        positions_snps <- rbind(positions_snps, cbind(SV_0$V1+pos_counter,"multi-copy"))
-        positions_snps_wd <- rbind(positions_snps_wd, cbind(SV_0$V1+pos_counter_wd,"multi-copy"))
+        positions_snps <- rbind(positions_snps, cbind(SV_0$V1+pos_counter, rowSums(SV_0[, 2:n_haps]), rowSums(SV_0[, subsample]), "multi-copy"))
+        positions_snps_wd <- rbind(positions_snps_wd, cbind(SV_0$V1+pos_counter_wd, rowSums(SV_0[, 2:n_haps]),rowSums(SV_0[, subsample]), "multi-copy"))
       }
       for(j in 2:n_haps){
         new_seq<- seq[pos_counter:(pos_counter+l_SV-1)]
@@ -120,8 +124,8 @@ for(k in 1:3){
       pos_counter_wd <- pos_counter_wd + l_SV
       SV_2 <- read.table(file = files_SV_2_sorted[i], header = F, sep = "")
       if(ncol(SV_2)>1 & nrow(SV_2)>1){
-        positions_snps <- rbind(positions_snps, cbind(SV_2$V1+pos_counter,"multi-copy"))
-        positions_snps_wd <- rbind(positions_snps_wd, cbind(SV_2$V1+pos_counter_wd,"multi-copy"))
+        positions_snps <- rbind(positions_snps, cbind(SV_2$V1+pos_counter, rowSums(SV_2[, 2:n_haps]), rowSums(SV_2[, subsample]), "multi-copy"))
+        positions_snps_wd <- rbind(positions_snps_wd, cbind(SV_2$V1+pos_counter_wd, rowSums(SV_2[, 2:n_haps]),rowSums(SV_2[, subsample]), "multi-copy"))
       }
       for(j in 2:n_haps){
         new_seq<- seq[pos_counter:(pos_counter+l_SV-1)]
@@ -139,8 +143,8 @@ for(k in 1:3){
 
   SC <- read.table(file = files_SC_sorted[length(files_SC_sorted)], header = F, sep = "")
   if(ncol(SC)>1 & nrow(SC)>1){
-    positions_snps <- rbind(positions_snps, cbind(SC$V1+pos_counter,"single-copy"))
-    positions_snps_wd <- rbind(positions_snps_wd, cbind(SC$V1+pos_counter_wd,"single-copy"))
+    positions_snps <- rbind(positions_snps, cbind(SC$V1+pos_counter, rowSums(SC[, 2:n_haps]), rowSums(SC[, subsample]), "single-copy"))
+    positions_snps_wd <- rbind(positions_snps_wd, cbind(SC$V1+pos_counter_wd, rowSums(SC[, 2:n_haps]), rowSums(SC[, subsample]),"single-copy"))
   }
   l_SC <- l_numbers_SC[length(files_SC_sorted)]
   for(j in 2:n_haps){
@@ -158,16 +162,18 @@ for(k in 1:3){
   positions_snps <- as.data.frame(positions_snps)
   positions_snps$V1 <- as.numeric(positions_snps$V1)
   positions_snps <- positions_snps[order(positions_snps$V1),]
-  positions_snps <- unique(positions_snps)
+  # positions_snps <- unique(positions_snps)
 
   write.table(positions_snps, file = paste0(output_dir, "/Position_files_HW","_Rep",k, ".txt"), sep = "\t", quote = F, row.names = F, col.names = F)
 
   positions_snps_wd <- as.data.frame(positions_snps_wd)
   positions_snps_wd$V1 <- as.numeric(positions_snps_wd$V1)
   positions_snps_wd <- positions_snps_wd[order(positions_snps_wd$V1),]
-  positions_snps_wd <- unique(positions_snps_wd)
+  # positions_snps_wd <- unique(positions_snps_wd)
 
   write.table(positions_snps_wd, file = paste0(output_dir, "/Position_wd_files_HW","_Rep",k, ".txt"), sep = "\t", quote = F, row.names = F, col.names = F)
+  write.table(subsample-1, file = paste0(output_dir, "/Subsampled_haplotypes_HW","_Rep",k, ".txt"), sep = "\t", quote = F, row.names = F, col.names = F)
+
   # Function to wrap sequence into lines of 60 characters
 
 
@@ -198,23 +204,21 @@ for(k in 1:3){
 sum(l_numbers_SC)
 
 
-#create sequences, copy the sequence according to position and length of each chunk and also look for mutations and copy from the derived sequence
 
-#rep k
-k <- 1
 
 Fis <- 0.9
-
+#for a reduced sampling set
+subsamplesize <-15
 for(k in 1:3){
   #read all duplication files 0 and 2
-  files_SV_0<-list.files(path = "$PATH_TO_SeDuS_OUTPUT/makefasta/Fis0.9/", pattern = paste0(".*_0_.*SV.*rep",k , ".*transformed\\.txt"), full.names = T)
+  files_SV_0<-list.files(path = "$PATH_TO_SEDUS_OUTPUT/Fis0.9/", pattern = paste0(".*_0_.*SV.*rep",k , ".*transformed\\.txt"), full.names = T)
   # Extract the b<number> part and convert to numeric
   b_numbers <- as.numeric(sub(".*_b(\\d+)_.*", "\\1", files_SV_0))
   files_SV_0_sorted <- files_SV_0[order(b_numbers)]
   l_numbers_SV <- as.numeric(sub(".*_l(\\d+)_.*", "\\1", files_SV_0_sorted))
   sum(l_numbers_SV)
 
-  files_SV_2<-list.files(path = "$PATH_TO_SeDuS_OUTPUT/makefasta/Fis0.9/", pattern = paste0(".*_2_.*SV.*rep",k , ".*transformed\\.txt"), full.names = T)
+  files_SV_2<-list.files(path = "$PATH_TO_SEDUS_OUTPUT/Fis0.9/", pattern = paste0(".*_2_.*SV.*rep",k , ".*transformed\\.txt"), full.names = T)
   # Extract the b<number> part and convert to numeric
   b_numbers <- as.numeric(sub(".*_b(\\d+)_.*", "\\1", files_SV_2))
   files_SV_2_sorted <- files_SV_2[order(b_numbers)]
@@ -222,7 +226,7 @@ for(k in 1:3){
 
 
   #read all single-copy files
-  files_SC<-list.files(path = "$PATH_TO_SeDuS_OUTPUT/makefasta/Fis0.9/", pattern = paste0(".*SC.*rep",k,".*transformed\\.txt"), full.names = T)
+  files_SC<-list.files(path = "$PATH_TO_SEDUS_OUTPUT/Fis0.9/", pattern = paste0(".*SC.*rep",k,".*transformed\\.txt"), full.names = T)
   # Extract the b<number> part and convert to numeric
   b_numbers <- as.numeric(sub(".*_b(\\d+)_.*", "\\1", files_SC))
   files_SC_sorted <- files_SC[order(b_numbers)]
@@ -235,10 +239,12 @@ for(k in 1:3){
   i<-1
   SC <- read.table(file = files_SC_sorted[i], header = F, sep = "")
   n_haps<- ncol(SC)
+  subsample<- sample(x = ((n_haps-1)/2), replace = F, size = subsamplesize)
+  subsample <- subsample*2
+  subsample <- sort(c(subsample, subsample-1))+1
   for(j in 2:n_haps){
     fastas[[(j-1)]]  <- c(paste0("> Rep",as.character(k) ,"_Sample", ceiling((j-1)/2),"_Hap", (2-((j-1)%%2))))
   }
-
   pos_counter <- 1
   pos_counter_wd <- 1
   i<-1
@@ -260,8 +266,8 @@ for(k in 1:3){
         }
         SC <- SC[rowSums(SC[, 2:n_haps]) > 0,]
         if(ncol(SC)>1 & nrow(SC)>1){
-          positions_snps <- rbind(positions_snps, cbind(SC$V1+pos_counter,"single-copy"))
-          positions_snps_wd <- rbind(positions_snps_wd, cbind(SC$V1+pos_counter_wd,"single-copy"))
+          positions_snps <- rbind(positions_snps, cbind(SC$V1+pos_counter, rowSums(SC[, 2:n_haps]), rowSums(SC[, subsample]),"single-copy"))
+          positions_snps_wd <- rbind(positions_snps_wd, cbind(SC$V1+pos_counter_wd, rowSums(SC[, 2:n_haps]), rowSums(SC[, subsample]),"single-copy"))
         }
       }
       for(j in 2:n_haps){
@@ -292,8 +298,8 @@ for(k in 1:3){
         }
         SV_0 <- SV_0[rowSums(SV_0[, 2:n_haps]) > 0, ]
         if(ncol(SV_0)>1 & nrow(SV_0)>1){
-          positions_snps <- rbind(positions_snps, cbind(SV_0$V1+pos_counter,"multi-copy"))
-          positions_snps_wd <- rbind(positions_snps_wd, cbind(SV_0$V1+pos_counter_wd,"multi-copy"))
+          positions_snps <- rbind(positions_snps, cbind(SV_0$V1+pos_counter, rowSums(SV_0[, 2:n_haps]) , rowSums(SV_0[, subsample]), "multi-copy"))
+          positions_snps_wd <- rbind(positions_snps_wd, cbind(SV_0$V1+pos_counter_wd, rowSums(SV_0[, 2:n_haps]), rowSums(SV_0[, subsample]), "multi-copy"))
         }
       }
       pos_counter_wd <- pos_counter_wd + l_SV
@@ -320,8 +326,8 @@ for(k in 1:3){
         }
         SV_2 <- SV_2[rowSums(SV_2[, 2:n_haps]) > 0, ]
         if(ncol(SV_2)>1 & nrow(SV_2)>1){
-          positions_snps <- rbind(positions_snps, cbind(SV_2$V1+pos_counter,"multi-copy"))
-          positions_snps_wd <- rbind(positions_snps_wd, cbind(SV_2$V1+pos_counter_wd,"multi-copy"))
+          positions_snps <- rbind(positions_snps, cbind(SV_2$V1+pos_counter, rowSums(SV_2[, 2:n_haps]), rowSums(SV_2[, subsample]),"multi-copy"))
+          positions_snps_wd <- rbind(positions_snps_wd, cbind(SV_2$V1+pos_counter_wd, rowSums(SV_2[, 2:n_haps]), rowSums(SV_2[, subsample]), "multi-copy"))
         }
       }
       for(j in 2:n_haps){
@@ -353,8 +359,8 @@ for(k in 1:3){
     }
     SC <- SC[rowSums(SC[, 2:n_haps]) > 0, ]
     if(ncol(SC)>1 & nrow(SC)>1){
-      positions_snps <- rbind(positions_snps, cbind(SC$V1+pos_counter,"single-copy"))
-      positions_snps_wd <- rbind(positions_snps_wd, cbind(SC$V1+pos_counter_wd,"single-copy"))
+      positions_snps <- rbind(positions_snps, cbind(SC$V1+pos_counter, rowSums(SC[, 2:n_haps]), rowSums(SC[, subsample]), "single-copy"))
+      positions_snps_wd <- rbind(positions_snps_wd, cbind(SC$V1+pos_counter_wd, rowSums(SC[, 2:n_haps]), rowSums(SC[, subsample]), "single-copy"))
     }
   }
   for(j in 2:n_haps){
@@ -373,7 +379,7 @@ for(k in 1:3){
   positions_snps <- as.data.frame(positions_snps)
   positions_snps$V1 <- as.numeric(positions_snps$V1)
   positions_snps <- positions_snps[order(positions_snps$V1),]
-  positions_snps <- unique(positions_snps)
+  # positions_snps <- unique(positions_snps)
 
   write.table(positions_snps, file = paste0(output_dir, "/Position_files_Fis0.9","_Rep",k, ".txt"), sep = "\t", quote = F, row.names = F, col.names = F)
   # Function to wrap sequence into lines of 60 characters
@@ -381,9 +387,10 @@ for(k in 1:3){
   positions_snps_wd <- as.data.frame(positions_snps_wd)
   positions_snps_wd$V1 <- as.numeric(positions_snps_wd$V1)
   positions_snps_wd <- positions_snps_wd[order(positions_snps_wd$V1),]
-  positions_snps_wd <- unique(positions_snps_wd)
+  # positions_snps_wd <- unique(positions_snps_wd)
 
   write.table(positions_snps_wd, file = paste0(output_dir, "/Position_wd_files_Fis0.9","_Rep",k, ".txt"), sep = "\t", quote = F, row.names = F, col.names = F)
+  write.table(subsample-1, file = paste0(output_dir, "/Subsampled_haplotypes_Fis0.9","_Rep",k, ".txt"), sep = "\t", quote = F, row.names = F, col.names = F)
 
   # Loop over all fastas
   i <-1
@@ -401,7 +408,4 @@ for(k in 1:3){
     writeLines(c(header, wrapped_seq), con = outfile)
   }
 }
-
-
-
 
